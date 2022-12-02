@@ -20,11 +20,12 @@ class MainActivity : AppCompatActivity() {
             NewTaskSheet().show(supportFragmentManager, "newTaskTag")
         }
 
+        // observing text fields for changes in view model
         taskViewModel.name.observe(this) {
             binding.taskName.text = String.format("Task name: %s", it)
         }
         taskViewModel.description.observe(this) {
-            binding.taskName.text = String.format("Task description: %s", it)
+            binding.taskDescription.text = String.format("Task description: %s", it)
         }
     }
 }
