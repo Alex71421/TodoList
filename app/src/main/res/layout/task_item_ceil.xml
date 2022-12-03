@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:id="@+id/task_ceil_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    app:cardCornerRadius="@dimen/extra_small_margin"
+    android:layout_margin="@dimen/extra_small_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/complete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            android:src="@drawable/ic_unchecked"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:contentDescription="CheckBox"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_gravity="center" />
+        
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place holder"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place holder"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_gravity="center"
+            android:layout_weight="5" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -17,15 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         binding.newTaskButton.setOnClickListener {
-            NewTaskSheet().show(supportFragmentManager, "newTaskTag")
-        }
-
-        // observing text fields for changes in view model
-        taskViewModel.name.observe(this) {
-            binding.taskName.text = String.format("Task name: %s", it)
-        }
-        taskViewModel.description.observe(this) {
-            binding.taskDescription.text = String.format("Task description: %s", it)
+            NewTaskSheet(null).show(supportFragmentManager, "newTaskTag")
         }
     }
 }
