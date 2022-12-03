@@ -48,10 +48,10 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
         val name = binding.name.text.toString()
         val description = binding.description.text.toString()
         if (taskItem == null) {
-            val newTask = TaskItem(name, description, null, null)
+            val newTask = TaskItem(name, description)
             taskViewModel.addTaskItem(newTask)
         } else {
-            taskViewModel.updateTaskItem(taskItem!!.id, name, description, null)
+            taskViewModel.updateTaskItem(taskItem!!.id, name, description)
         }
         binding.name.setText("")
         binding.description.setText("")

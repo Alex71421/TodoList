@@ -24,22 +24,11 @@ class TaskViewModel: ViewModel() {
     }
 
     // Function for updating task in the viewModel
-    fun updateTaskItem(id: UUID, name: String, description: String, dueTime: LocalTime?) {
+    fun updateTaskItem(id: UUID, name: String, description: String) {
         val list = taskItems.value
         val task = list!!.find { it.id == id }
         task!!.name = name
         task.description = description
-        task.dueTime = dueTime
-        taskItems.postValue(list)
-    }
-
-    // Function for marking the completed task
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun setCompleted(taskItem: TaskItem) {
-        val list = taskItems.value
-        val task = list!!.find { it.id == taskItem.id}
-        if (taskItem.completedDate == null)
-            taskItem.completedDate = LocalDate.now()
         taskItems.postValue(list)
     }
 }
