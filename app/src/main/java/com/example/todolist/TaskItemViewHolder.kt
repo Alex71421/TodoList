@@ -11,12 +11,11 @@ class TaskItemViewHolder(
 ): RecyclerView.ViewHolder(binding.root) {
     fun bindTaskItem(taskItem: TaskItem) {
         binding.name.text = taskItem.name
+        binding.description.hint = taskItem.description
 
         binding.taskCeilContainer.setOnClickListener {
             clickListener.editTaskItem(taskItem)
         }
-        binding.description.setOnClickListener {
-            clickListener.editTaskItem(taskItem)
-        }
+
     }
 }
