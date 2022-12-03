@@ -2,6 +2,7 @@ package com.example.todolist
 
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.example.todolist.databinding.FragmentNewTaskSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class NewTaskSheet : BottomSheetDialogFragment() {
+class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentNewTaskSheetBinding
     private lateinit var taskViewModel: TaskViewModel
 
@@ -31,12 +32,27 @@ class NewTaskSheet : BottomSheetDialogFragment() {
         binding.saveButton.setOnClickListener {
             saveAction()
         }
+
+        if (taskItem != null) {
+            binding.taskTitle.text = "Edit Task"
+            val editable = Editable.Factory.getInstance()
+            binding.name.text = editable.newEditable(taskItem!!.name)
+            binding.description.text = editable.newEditable(taskItem!!.description)
+        } else {
+            binding.taskTitle.text = "New Task"
+        }
     }
 
     // Function that holds saving to the view model
     private fun saveAction() {
-        taskViewModel.name.value = binding.name.text.toString()
-        taskViewModel.description.value = binding.description.text.toString()
+        val name = binding.name.text.toString()
+        val description = binding.description.text.toString()
+        if (taskItem == null) {
+            val newTask = TaskItem(name, description, null, null)
+            taskViewModel.addTaskItem(newTask)
+        } else {
+            taskViewModel.updateTaskItem(taskItem!!.id, name, description, null)
+        }
         binding.name.setText("")
         binding.description.setText("")
         // close the fragment
